@@ -6,10 +6,13 @@ angular.module('churulickr').controller('registerController', ['$scope', '$http'
 
 		$http.post('/user/register', _.pick($scope, 'username', 'password', 'email'))
 		.success(function(response) {
-			console.log('success', response);
+			$scope.username = $scope.password = $scope.email = '';
+			$scope.has_error = false;
+
+			$('#registerDialog').modal('hide');
 		})
 		.error(function(err) {
-			console.error('error');
+			$scope.has_error = true;
 		});
 	}
 }])

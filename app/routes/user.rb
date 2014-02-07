@@ -2,8 +2,11 @@ get '/user/email_taken' do
   User.where(email: params[:email]).exists? ? 'false' : 'true'
 end
 
+get '/user/username_taken' do
+  User.where(username: params[:username]).exists? ? 'false' : 'true'
+end
+
 post '/user/register' do
-  p params
   user = User.new username:      params[:username],
                   email:         params[:email],
                   register_date: DateTime.now

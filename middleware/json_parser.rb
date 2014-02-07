@@ -22,7 +22,9 @@ module Rack
     end
 
     def call(env)
-      if Rack::Request.new(env).media_type.include?(APPLICATION_JSON) && (body = env[POST_BODY].read).length != 0
+      media_type = Rack::Request.new(env).media_type
+
+      if not media_type.nil? and media_type.include?(APPLICATION_JSON) and (body = env[POST_BODY].read).length != 0
         env[POST_BODY].rewind # somebody might try to read this stream
         env.update(FORM_HASH => JSON.parse(body), FORM_INPUT => env[POST_BODY])
       end
