@@ -6,10 +6,13 @@ angular.module('churulickr').controller('loginController', ['$scope','$http', fu
 
 		$http.post('/user/login', _.pick($scope, 'username', 'password'))
 		.success(function(response) {
-			console.log('success', response);
+			$scope.username = $scope.password = '';
+			$scope.has_error = false;
+
+			$('#loginDialog').modal('hide');
 		})
 		.error(function(err) {
-			console.error('error');
+			$scope.has_error = true;
 		});
 	}
 }])
