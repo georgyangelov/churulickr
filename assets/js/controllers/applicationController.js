@@ -4,10 +4,12 @@ angular.module('churulickr').controller('applicationController',
 	$scope.logged_in = false;
 	$scope.user = {};
 
-	$scope.$on('login', function(user_data) {
+	function login_handler(user_data) {
 		$scope.logged_in = true;
 		$scope.user = user_data;
-	});
+	}
+
+	$scope.$on('login', login_handler);
 
 	$scope.logout = function() {
 		user.logout().success(function() {
@@ -17,5 +19,8 @@ angular.module('churulickr').controller('applicationController',
 			console.error('Cannot logout');
 		});
 	};
+
+	// Check if we are logged in
+	user.info().success(login_handler);
 
 }]);

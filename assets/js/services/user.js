@@ -17,6 +17,10 @@ angular.module('churulickr').service('user', ['$q', '$http', function($q, $http)
 
 		logout: function() {
 			return $http.post('/user/logout');
+		},
+
+		info: function() {
+			return $http.get('/user/info');
 		}
 	};
 }]);

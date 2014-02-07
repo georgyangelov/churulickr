@@ -6,6 +6,12 @@ get '/user/username_taken' do
   User.where(username: params[:username]).exists? ? 'false' : 'true'
 end
 
+get '/user/info' do
+  return 400 unless session[:logged_in]
+
+  User.find(session[:user_id]).public_info(true).to_json
+end
+
 post '/user/register' do
   user = User.new username:      params[:username],
                   email:         params[:email],
@@ -13,6 +19,8 @@ post '/user/register' do
 
   user.password = params[:password]
   user.save!
+
+  user.public_info(true).to_json
 end
 
 post '/user/login' do
@@ -22,6 +30,8 @@ post '/user/login' do
 
   session[:logged_in] = true
   session[:user_id]   = user.id
+
+  user.public_info(true).to_json
 end
 
 post '/user/logout' do

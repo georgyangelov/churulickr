@@ -30,4 +30,17 @@ class User
     self.password_hash = @password
   end
 
+  def public_info(with_followers=false)
+    data = {
+      email:         email,
+      username:      username,
+      verified:      verified,
+      register_date: register_date,
+    }
+
+    data[:followers] = followers if with_followers
+
+    data
+  end
+
 end
