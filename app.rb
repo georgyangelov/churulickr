@@ -13,3 +13,7 @@ Dir["#{APP_ROOT}/app/routes/*.rb" ].each { |file| require file }
 
 # Load mongoid configuration
 Mongoid.load!("#{APP_ROOT}/config/mongoid.yml", :development)
+
+# Sinatra configuration
+set :static,        true
+set :public_folder, "#{APP_ROOT}/assets"

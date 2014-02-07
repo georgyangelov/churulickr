@@ -1,3 +1,3 @@
 get '/' do
-  {hello: 'world!'}.to_json
+  send_file File.join(settings.public_folder, 'index.html')
 end
