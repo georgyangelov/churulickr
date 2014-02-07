@@ -1,8 +1,29 @@
-<div class="jumbotron">
+<!-- <div class="jumbotron">
 	<h1>Welcome to churulickr!</h1>
 	<p>The place where you can churulick with your friends!</p>
 	<p>Register to start churulicking now!</p>
 	<p>
 		<a class="btn btn-lg btn-primary" href="#">Start churulicking!</a>
 	</p>
+</div> -->
+
+<div ng-controller="tweetController">
+	<!-- <button ng-click="add()">More!</button> -->
+
+	<div masonry class="tweetContainer">
+	    <div class="masonry-brick tweet" ng-repeat="tweet in tweets" style="display: none;">
+	        <img class="avatar" ng-src="{{tweet.src}}" alt="A masonry brick">
+
+	        <div class="box">
+	        	<p>{{tweet.text}}</p>
+
+	        	<div class="button-bar">
+		        	<button class="pull-left"><span class="glyphicon glyphicon-share-alt"></span> Reply</button>
+		        	<button class="pull-left"><span class="glyphicon glyphicon-retweet"></span> Rechurulick</button>
+
+		        	<div class="pull-right"><a href="#" class="no-style">{{tweet.from}}</a></div>
+	        	</div>
+	        </div>
+	    </div>
+	</div>
 </div>

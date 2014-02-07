@@ -15,6 +15,10 @@
   <script src="http://code.angularjs.org/1.2.11/angular-route.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
 
+  <script src="//cdnjs.cloudflare.com/ajax/libs/masonry/3.1.2/masonry.pkgd.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.0.4/jquery.imagesloaded.min.js"></script>
+  <script src="js/lib/angular-masonry.js"></script>
+
   <script src="js/churulickr.js"></script>
 
   <script src="js/directives/validation.js"></script>
@@ -22,6 +26,7 @@
   <script src="js/services/user.js"></script>
 
   <script src="js/controllers/applicationController.js"></script>
+  <script src="js/controllers/tweetController.js"></script>
   <script src="js/controllers/loginController.js"></script>
   <script src="js/controllers/registerController.js"></script>
 
@@ -46,8 +51,7 @@
 
 	      <ul class="nav navbar-nav">
 	        <li class="active"><a href="#">Home</a></li>
-	        <li><a href="#">About</a></li>
-	        <li><a href="#">Contact</a></li>
+	        <li><a href="#">Churulick!</a></li>
 
 	        <!-- <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
@@ -64,8 +68,8 @@
 
 	      </ul>
         <ul class="nav navbar-nav navbar-right" ng-hide="logged_in">
-          <li><a href="#" data-toggle="modal" data-target="#registerDialog">Register</a></li>
-          <li><a href="#" data-toggle="modal" data-target="#loginDialog">Login</a></li>
+          <li><a data-toggle="modal" data-target="#registerDialog">Register</a></li>
+          <li><a data-toggle="modal" data-target="#loginDialog">Login</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right" ng-show="logged_in">
           <li><a href="#">{{user.username}}</a></li>
