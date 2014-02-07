@@ -3,7 +3,15 @@ require 'json'
 require 'mongoid'
 require 'bcrypt'
 
+require_relative 'middleware/json_parser'
+
 APP_ROOT = __dir__
+
+# Parse json post data
+use Rack::JSONParser
+
+# Store session data on the server
+use Rack::Session::Pool
 
 # Require stuff
 Dir["#{APP_ROOT}/app/helpers/*.rb"].each { |file| require file }
