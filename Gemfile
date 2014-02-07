@@ -6,3 +6,6 @@ gem "bcrypt-ruby"
 
 gem "shotgun"
 gem "thin"
+
+gem "therubyracer" # Required by less
+gem "less"

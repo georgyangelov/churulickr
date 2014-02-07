@@ -17,3 +17,4 @@ Mongoid.load!("#{APP_ROOT}/config/mongoid.yml", :development)
 # Sinatra configuration
 set :static,        true
 set :public_folder, "#{APP_ROOT}/assets"
+set :views,         "#{APP_ROOT}/assets"
