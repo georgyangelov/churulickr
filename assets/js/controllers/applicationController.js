@@ -4,7 +4,7 @@ angular.module('churulickr').controller('applicationController',
 	$scope.logged_in = false;
 	$scope.user = {};
 
-	function login_handler(user_data) {
+	function login_handler(event, user_data) {
 		$scope.logged_in = true;
 		$scope.user = user_data;
 	}
