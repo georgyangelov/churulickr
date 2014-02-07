@@ -8,7 +8,7 @@ class User
   field :password_hash, type: String
   field :email,         type: String
   field :register_date, type: DateTime
-  field :verified,      type: Boolean
+  field :verified,      type: Boolean, default: false
 
   validates :username,      presence: true, uniqueness: true
   validates :email,         presence: true, uniqueness: true
