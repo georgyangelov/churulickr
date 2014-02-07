@@ -1,2 +1,8 @@
+source 'https://rubygems.org'
+
 gem "sinatra"
 gem "mongoid", "~> 3.0.0"
+gem "bcrypt-ruby"
+
+gem "shotgun"
+gem "thin"

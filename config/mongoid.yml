@@ -1,0 +1,6 @@
+development:
+  sessions:
+    default:
+      database: churulickr
+      hosts:
+        - localhost:27017
