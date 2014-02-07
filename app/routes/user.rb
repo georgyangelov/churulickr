@@ -23,3 +23,7 @@ post '/user/login' do
   session[:logged_in] = true
   session[:user_id]   = user.id
 end
+
+post '/user/logout' do
+  session.clear
+end

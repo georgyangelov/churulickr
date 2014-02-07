@@ -19,12 +19,15 @@
 
   <script src="js/directives/validation.js"></script>
 
+  <script src="js/services/user.js"></script>
+
+  <script src="js/controllers/applicationController.js"></script>
   <script src="js/controllers/loginController.js"></script>
   <script src="js/controllers/registerController.js"></script>
 
   <link rel="stylesheet" href="styles/main.css">
 </head>
-<body ng-app="churulickr">
+<body ng-app="churulickr" ng-controller="applicationController">
 
 	<div class="navbar navbar-default navbar-fixed-top">
 	  <div class="container">
@@ -60,10 +63,13 @@
 	        </li> -->
 
 	      </ul>
-	      <ul class="nav navbar-nav navbar-right">
-	        <li><a href="#" data-toggle="modal" data-target="#registerDialog">Register</a></li>
-	        <li><a href="#" data-toggle="modal" data-target="#loginDialog">Login</a></li>
-	      </ul>
+        <ul class="nav navbar-nav navbar-right" ng-hide="logged_in">
+          <li><a href="#" data-toggle="modal" data-target="#registerDialog">Register</a></li>
+          <li><a href="#" data-toggle="modal" data-target="#loginDialog">Login</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" ng-show="logged_in">
+          <li><a href="#" ng-click="logout()">Log out</a></li>
+        </ul>
 
 	    </div>
 	  </div>
