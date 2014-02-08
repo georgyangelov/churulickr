@@ -26,3 +26,6 @@ Mongoid.load!("#{APP_ROOT}/config/mongoid.yml", :development)
 set :static,        true
 set :public_folder, "#{APP_ROOT}/assets"
 set :views,         "#{APP_ROOT}/assets"
+set :bind,          '0.0.0.0'
+
+disable :threaded
