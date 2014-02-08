@@ -1,4 +1,5 @@
 @main-color:       darken(green, 5%);
+@even-less-faded-color: fade(@main-color, 65%);
 @less-faded-color: fade(@main-color, 45%);
 @faded-color:      fade(@main-color, 15%);
 
@@ -50,6 +51,65 @@ a.no-style {
 		margin-bottom: 20px;
 	}
 }
+
+.btn {
+	background: none;
+
+	border: 1px solid @less-faded-color;
+
+	transition: all 0.2s;
+
+	color: lighten(black, 40%);
+
+	&:hover {
+		color: black;
+		background: none;
+		box-shadow: 0 3px 0 @even-less-faded-color;
+	}
+
+	&:active {
+		color: white;
+		background: @even-less-faded-color;
+
+		box-shadow: none;
+		border: 1px solid @main-color;
+	}
+}
+
+.btn-primary {
+	color: white;
+	background: @even-less-faded-color;
+	border: 1px solid @main-color;
+
+	&:hover {
+		color: white;
+		background: @even-less-faded-color;
+		box-shadow: 0 3px 0 @main-color;
+		border: 1px solid @main-color;
+	}
+
+	&:active {
+		background: @main-color;
+		box-shadow: none;
+	}
+}
+
+.form-control {
+	border-radius: 3px;
+
+	transition: all 0.2s;
+	box-shadow: none;
+
+	&:hover {
+		border: 1px solid @even-less-faded-color;
+	}
+
+	&:focus {
+		border: 1px solid @even-less-faded-color;
+		box-shadow: 0 3px 0 @even-less-faded-color;
+	}
+}
+
 
 .tweet {
 	// width: 360px;
@@ -141,5 +201,16 @@ a.no-style {
 				}
 			}
 		}
+	}
+}
+
+.modal-content {
+	box-shadow: 0px 3px 0 @less-faded-color;
+	border-color: @less-faded-color;
+
+	border-radius: 3px;
+
+	.modal-title {
+		color: @main-color;
 	}
 }
