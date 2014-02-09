@@ -1,7 +1,6 @@
 @main-color:       darken(green, 5%);
-@even-less-faded-color: fade(@main-color, 65%);
-@less-faded-color: fade(@main-color, 45%);
-@faded-color:      fade(@main-color, 15%);
+@less-faded-color: fade(@main-color, 65%);
+@faded-color:      fade(@main-color, 45%);
 
 body {
 	padding-top: 70px;
@@ -9,7 +8,7 @@ body {
 }
 
 .navbar-default {
-	box-shadow: 0 -3px @less-faded-color inset;
+	box-shadow: 0 -3px @faded-color inset;
 	border: none;
 
 	.navbar-brand {
@@ -55,7 +54,8 @@ a.no-style {
 .btn {
 	background: none;
 
-	border: 1px solid @less-faded-color;
+	border: 1px solid @faded-color;
+	margin-top: 3px;
 
 	transition: all 0.2s;
 
@@ -64,13 +64,16 @@ a.no-style {
 	&:hover {
 		color: black;
 		background: none;
-		box-shadow: 0 3px 0 @even-less-faded-color;
+
+		margin-top: 0;
+		box-shadow: 0 3px 0 @less-faded-color;
 	}
 
 	&:active {
 		color: white;
-		background: @even-less-faded-color;
+		background: @less-faded-color;
 
+		margin-top: 3px;
 		box-shadow: none;
 		border: 1px solid @main-color;
 	}
@@ -78,12 +81,12 @@ a.no-style {
 
 .btn-primary {
 	color: white;
-	background: @even-less-faded-color;
+	background: @less-faded-color;
 	border: 1px solid @main-color;
 
 	&:hover {
 		color: white;
-		background: @even-less-faded-color;
+		background: @less-faded-color;
 		box-shadow: 0 3px 0 @main-color;
 		border: 1px solid @main-color;
 	}
@@ -101,12 +104,12 @@ a.no-style {
 	box-shadow: none;
 
 	&:hover {
-		border: 1px solid @even-less-faded-color;
+		border: 1px solid @less-faded-color;
 	}
 
 	&:focus {
-		border: 1px solid @even-less-faded-color;
-		box-shadow: 0 3px 0 @even-less-faded-color;
+		border: 1px solid @less-faded-color;
+		box-shadow: 0 3px 0 @less-faded-color;
 	}
 }
 
@@ -205,8 +208,8 @@ a.no-style {
 }
 
 .modal-content {
-	box-shadow: 0px 3px 0 @less-faded-color;
-	border-color: @less-faded-color;
+	box-shadow: 0px 3px 0 @faded-color;
+	border-color: @faded-color;
 
 	border-radius: 3px;
 
