@@ -2,6 +2,8 @@
 @less-faded-color: fade(@main-color, 65%);
 @faded-color:      fade(@main-color, 45%);
 @gray-color:       darken(white, 20%);
+@red-color:        darken(red, 15%);
+@faded-red-color:  fade(@red-color, 65%);
 
 @import 'profile.less';
 
@@ -69,16 +71,18 @@ a.no-style {
 }
 
 .btn, .btn-default {
-	background: white;
+	&, &:focus {
+		background: white;
 
-	outline: none;
+		outline: none;
 
-	border: 1px solid @faded-color;
-	margin-top: 3px;
+		border: 1px solid @faded-color;
+		margin-top: 3px;
 
-	transition: all 0.2s;
+		transition: all 0.2s;
 
-	color: lighten(black, 40%);
+		color: lighten(black, 40%);
+	}
 
 	&:hover {
 		color: black;
@@ -99,7 +103,9 @@ a.no-style {
 }
 
 .btn-on-color {
-	border-color: white;
+	&, &:focus {
+		border-color: white;
+	}
 
 	&:hover {
 		box-shadow: 0 3px 0 @gray-color;
@@ -113,10 +119,26 @@ a.no-style {
 	}
 }
 
+.btn-red-text {
+	&, &:focus {
+		color: @faded-red-color;
+	}
+
+	&:hover {
+		color: @red-color;
+	}
+
+	&:hover {
+		color: @red-color;
+	}
+}
+
 .btn-primary {
-	color: white;
-	background: @less-faded-color;
-	border: 1px solid @main-color;
+	&, &:focus {
+		color: white;
+		background: @less-faded-color;
+		border: 1px solid @main-color;
+	}
 
 	&:hover {
 		color: white;
