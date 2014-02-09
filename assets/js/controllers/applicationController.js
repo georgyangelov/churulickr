@@ -1,15 +1,17 @@
 angular.module('churulickr').controller('applicationController',
-	['$scope','$http', 'user', function($scope, $http, user) {
+	['$scope', 'user', function($scope, user) {
 
 	$scope.logged_in = false;
 	$scope.user = {};
 
-	function login_handler(event, user_data) {
+	function set_user_data(user_data) {
 		$scope.logged_in = true;
 		$scope.user = user_data;
 	}
 
-	$scope.$on('login', login_handler);
+	$scope.$on('login', function(event, user_data) {
+		set_user_data(user_data);
+	});
 
 	$scope.logout = function() {
 		user.logout().success(function() {
@@ -23,6 +25,6 @@ angular.module('churulickr').controller('applicationController',
 	};
 
 	// Check if we are logged in
-	user.info().success(login_handler);
+	user.info().success(set_user_data);
 
 }]);

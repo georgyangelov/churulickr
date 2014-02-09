@@ -34,6 +34,7 @@
   <script src="js/controllers/tweetController.js"></script>
   <script src="js/controllers/loginController.js"></script>
   <script src="js/controllers/registerController.js"></script>
+  <script src="js/controllers/profileController.js"></script>
 
   <link rel="stylesheet" href="styles/main.css">
 </head>
@@ -54,7 +55,7 @@
 	    </div>
 	    <div class="navbar-collapse collapse">
 	      <ul class="nav navbar-nav">
-	        <li class="active"><a href="#">Home</a></li>
+	        <li><a href="#">Home</a></li>
 	        <li><a href="#">Churulick!</a></li>
 	      </ul>
 
@@ -63,7 +64,7 @@
           <li><a data-toggle="modal" data-target="#loginDialog">Login</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right" ng-show="logged_in">
-          <li><a href="#">{{user.username}}</a></li>
+          <li><a ng-href="{{'#/' + user.username}}">{{user.username}}</a></li>
           <li><a ng-click="logout()">Log out</a></li>
         </ul>
 
@@ -84,6 +85,9 @@
         <div class="alert col-sm-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3" ng-class="alert.type">{{alert.message}}</div>
       </div>
     </div>
+  </div>
+
+  <div class="container">
     <div ng-view></div>
   </div>
 

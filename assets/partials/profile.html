@@ -1,0 +1,37 @@
+<div class="profileContainer">
+	<div class="background"></div>
+
+	<div class="profile">
+		<img class="avatar" ng-src="http://placekitten.com/100/100">
+		<h3>Georgy Angelov</h3>
+		<h4>@stormbreakerbg</h4>
+	</div>
+
+	<div class="info">
+		<h4>2800 tweets <span class="translucent">|</span> 108 followers <span class="translucent">|</span> 86 following</h4>
+	</div>
+
+	<div class="buttons">
+		<button class="btn btn-on-color"><span class="glyphicon glyphicon-plus"></span> Follow</button>
+		<button class="btn btn-on-color"><span class="glyphicon glyphicon-share-alt"></span> Churulick to Georgy</button>
+	</div>
+</div>
+
+<div ng-controller="tweetController">
+	<div masonry class="tweetContainer">
+	    <div class="masonry-brick tweet col-sm-12 col-md-6 col-lg-4" ng-repeat="tweet in tweets" style="display: none;">
+	        <img class="avatar" ng-src="{{tweet.src}}" alt="A masonry brick">
+
+	        <div class="box">
+	        	<p>{{tweet.text}}</p>
+
+	        	<div class="button-bar">
+		        	<button class="pull-left"><span class="glyphicon glyphicon-share-alt"></span> Reply</button>
+		        	<button class="pull-left"><span class="glyphicon glyphicon-retweet"></span> Rechurulick</button>
+
+		        	<div class="pull-right"><a href="#" class="no-style">{{tweet.from}}</a></div>
+	        	</div>
+	        </div>
+	    </div>
+	</div>
+</div>

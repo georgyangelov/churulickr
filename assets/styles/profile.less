@@ -1,0 +1,64 @@
+@profile-box-height: 300px;
+
+.profileContainer {
+	height: @profile-box-height;
+
+	.background {
+		position: absolute;
+		left: 0;
+
+		z-index: -1;
+
+		width: 100%;
+		height: @profile-box-height;
+
+		background: radial-gradient(ellipse at center, lighten(@main-color, 5%) 20%, @main-color 100%);
+		box-shadow: 0 1px 0 white;
+	}
+
+	h2, h3, h4 {
+		margin-top: 0;
+		color: white;
+		text-shadow: 0 3px 0 @main-color;
+	}
+
+	.translucent {
+		color: fade(white, 40%);
+	}
+
+	.profile {
+		width: 300px;
+		margin: 0 auto;
+
+		padding-top: 10px;
+
+		text-align: center;
+
+		.avatar {
+			display: inline-block;
+			margin: 10px auto;
+
+			width: 100px;
+			height: 100px;
+
+			border-radius: 3px;
+
+			box-shadow: 0 3px 0 @main-color;
+			border: 1px solid @main-color;
+		}
+	}
+
+	.buttons {
+		margin-top: 25px;
+
+		text-align: center;
+
+		.btn {
+			display: inline-block;
+		}
+	}
+
+	.info {
+		text-align: center;
+	}
+}

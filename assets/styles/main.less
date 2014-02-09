@@ -1,13 +1,21 @@
 @main-color:       darken(green, 5%);
 @less-faded-color: fade(@main-color, 65%);
 @faded-color:      fade(@main-color, 45%);
+@gray-color:       darken(white, 20%);
+
+@import 'profile.less';
 
 body {
-	padding-top: 70px;
+	padding-top: 50px;
 	background: darken(white, 10%)
 }
 
+*:focus {
+	outline: none !important;
+}
+
 .navbar-default {
+	margin-bottom: 0;
 	box-shadow: 0 -3px @faded-color inset;
 	border: none;
 
@@ -42,7 +50,16 @@ a.no-style {
 	margin: 0;
 }
 
+.container {
+	.alert {
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+}
+
 .tweetContainer {
+	margin-top: 20px;
+
 	.tweet {
 		float: left;
 
@@ -51,8 +68,8 @@ a.no-style {
 	}
 }
 
-.btn {
-	background: none;
+.btn, .btn-default {
+	background: white;
 
 	outline: none;
 
@@ -65,7 +82,7 @@ a.no-style {
 
 	&:hover {
 		color: black;
-		background: none;
+		background: white;
 
 		margin-top: 0;
 		box-shadow: 0 3px 0 @less-faded-color;
@@ -78,6 +95,21 @@ a.no-style {
 		margin-top: 3px;
 		box-shadow: none;
 		border: 1px solid @main-color;
+	}
+}
+
+.btn-on-color {
+	border-color: white;
+
+	&:hover {
+		box-shadow: 0 3px 0 @gray-color;
+	}
+
+	&:active {
+		color: black;
+		border-color: @gray-color;
+		background: @gray-color;
+		box-shadow: none;
 	}
 }
 
