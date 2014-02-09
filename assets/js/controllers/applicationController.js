@@ -15,8 +15,10 @@ angular.module('churulickr').controller('applicationController',
 		user.logout().success(function() {
 			$scope.logged_in = false;
 			$scope.user = {};
+
+			$scope.$broadcast('alert', 'success', "Please don't leave me alone... :(");
 		}).error(function() {
-			console.error('Cannot logout');
+			$scope.$broadcast('alert', 'danger', "We couldn't log you out. You'll have to stay here, sorry...");
 		});
 	};
 
