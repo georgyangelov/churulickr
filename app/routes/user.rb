@@ -9,11 +9,11 @@ end
 get '/user/logged_user_info' do
   return 400 unless session[:logged_in]
 
-  User.find(session[:user_id]).public_info(true).to_json
+  User.find(session[:user_id]).public_info.to_json
 end
 
 get '/user/info/:username' do |username|
-  User.where(username: username).first.public_info(true).to_json
+  User.where(username: username).first.public_info.to_json
 end
 
 post '/user/register' do
@@ -25,7 +25,7 @@ post '/user/register' do
   user.password = params[:password]
   user.save!
 
-  user.public_info(true).to_json
+  user.public_info.to_json
 end
 
 post '/user/login' do
@@ -36,9 +36,13 @@ post '/user/login' do
   session[:logged_in] = true
   session[:user_id]   = user.id
 
-  user.public_info(true).to_json
+  user.public_info.to_json
 end
 
 post '/user/logout' do
   session.clear
+end
+
+post '/user/follow/:username' do |username|
+  User.where(username: username).first.followers << User.find(session[:user_id])
 end

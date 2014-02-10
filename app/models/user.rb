@@ -32,7 +32,7 @@ class User
     self.password_hash = @password
   end
 
-  def public_info(with_followers=false)
+  def public_info
     data = {
       email:         email,
       fullname:      fullname,
@@ -41,12 +41,13 @@ class User
       register_date: register_date,
     }
 
-    data[:followers] = followers if with_followers
+    data[:followers] = followers.map(&:username)
+    data[:following] = User.where(follower_ids: id).map(&:username)
 
     data[:followers_count] = followers.size
 
     # TODO: Check if this works
-    data[:following_count] = User.where(followers: id).count
+    data[:following_count] = data[:following].size
     data[:tweets_count]    = messages.count
 
     data

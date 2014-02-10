@@ -26,6 +26,10 @@ angular.module('churulickr').service('user', ['$q', '$http', function($q, $http)
 
 		logged_user_info: function() {
 			return $http.get('/user/logged_user_info');
+		},
+
+		follow: function(username) {
+			return $http.post('/user/follow/' + username);
 		}
 	};
 }]);

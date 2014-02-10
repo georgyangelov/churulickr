@@ -1,5 +1,5 @@
 angular.module('churulickr').controller('applicationController',
-	['$scope', 'user', function($scope, user) {
+	['$rootScope', 'user', function($scope, user) {
 
 	$scope.logged_in = false;
 	$scope.user = {};
@@ -10,7 +10,6 @@ angular.module('churulickr').controller('applicationController',
 	}
 
 	$scope.$on('login', function(event, user_data) {
-		console.log(event, user_data);
 		set_user_data(user_data);
 	});
 
