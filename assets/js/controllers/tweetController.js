@@ -12,6 +12,10 @@ angular.module('churulickr').controller('tweetController',
 		})
 	};
 
+	$scope.reply = function(username) {
+		$rootScope.$broadcast('reply', username);
+	};
+
 	if($rootScope.logged_in) {
 		$scope.loadTweets();
 	} else {
@@ -26,4 +30,4 @@ angular.module('churulickr').controller('tweetController',
 		$scope.loadAllTweets();
 	});
 
-}])
+}]);
