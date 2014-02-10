@@ -14,7 +14,7 @@
 	<div class="buttons">
 		<button class="btn btn-on-color" ng-hide="is_follower()" ng-disabled="!logged_in" ng-click="follow()"><span class="glyphicon glyphicon-plus"></span> Follow</button>
 		<button class="btn btn-on-color" ng-show="is_follower()" ng-click="unfollow()"><span class="glyphicon glyphicon-minus"></span> Unfollow</button>
-		<button class="btn btn-on-color" ng-disabled="!logged_in"><span class="glyphicon glyphicon-share-alt"></span> Churulick to {{first_name()}}</button>
+		<button class="btn btn-on-color" ng-disabled="!logged_in" ng-click="reply(info.username)"><span class="glyphicon glyphicon-share-alt"></span> Churulick to {{first_name()}}</button>
 		&nbsp;
 
 		<button ng-show="user.admin &amp;&amp; !info.verified" ng-click="verify()" class="btn btn-on-color"><span class="glyphicon glyphicon-ok"></span> Verify</button>
@@ -32,7 +32,7 @@
 	        	<p>{{tweet.text}}</p>
 
 	        	<div class="button-bar">
-		        	<button class="pull-left"><span class="glyphicon glyphicon-share-alt"></span> Reply</button>
+		        	<button class="pull-left" ng-click="reply(tweet.from)"><span class="glyphicon glyphicon-share-alt"></span> Reply</button>
 		        	<button class="pull-left"><span class="glyphicon glyphicon-retweet"></span> Rechurulick</button>
 
 		        	<div class="pull-right"><a href="#" class="no-style">{{tweet.from}}</a></div>

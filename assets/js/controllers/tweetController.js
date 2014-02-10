@@ -6,19 +6,25 @@ angular.module('churulickr').controller('tweetController',
 			$scope.tweets = p.data;
 		});
 	};
+
 	$scope.loadTweets = function() {
 		tweet.getTweets().then(function(p) {
 			$scope.tweets = p.data;
 		})
 	};
-	$scope.loadUserTweets = function() {
-		tweet.getUserTweets($routeParams.username).then(function(p) {
+
+	$scope.loadUserTweets = function(username) {
+		tweet.getUserTweets(username).then(function(p) {
 			$scope.tweets = p.data;
 		});
 	};
 
+	$scope.reply = function(username) {
+		$rootScope.$broadcast('reply', username);
+	};
+
 	if ($routeParams.username) {
-		$scope.loadUserTweets();
+		$scope.loadUserTweets($routeParams.username);
 	}
 	else if ($rootScope.logged_in) {
 		$scope.loadTweets();
@@ -34,4 +40,4 @@ angular.module('churulickr').controller('tweetController',
 		$scope.loadAllTweets();
 	});
 
-}])
+}]);

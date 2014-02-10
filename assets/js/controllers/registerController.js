@@ -16,5 +16,9 @@ angular.module('churulickr').controller('registerController',
 		}, function(err) {
 			$scope.has_error = true;
 		});
-	}
+	};
+
+	$('#registerDialog').on('shown.bs.modal', function() {
+		$('#email').focus();
+	});
 }]);
