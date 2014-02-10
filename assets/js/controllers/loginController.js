@@ -1,4 +1,4 @@
-angular.module('churulickr').controller('loginController', ['$scope', 'user', function($scope, user) {
+angular.module('churulickr').controller('loginController', ['$scope', 'user', '$rootScope', function($scope, user, $rootScope) {
 	$scope.submit = function() {
 		if (!$('#loginDialog form').valid()) {
 			return;
@@ -7,7 +7,7 @@ angular.module('churulickr').controller('loginController', ['$scope', 'user', fu
 		user.login($scope.username, $scope.password).success(function(user_data) {
 			$scope.username = $scope.password = '';
 			$scope.has_error = false;
-			$scope.$emit('login', user_data);
+			$rootScope.$broadcast('login', user_data);
 
 			$('#loginDialog').modal('hide');
 		})

@@ -5,6 +5,14 @@ angular.module('churulickr').service('tweet', ['$q', '$http', function($q, $http
 				message: message,
 				location: location
 			});
+		},
+
+		getAllTweets: function() {
+			return $http.get('/tweet/all');
+		},
+
+		getTweets: function(user) {
+			return $http.get('/tweet');
 		}
 	};
 }]);
