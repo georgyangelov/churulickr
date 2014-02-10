@@ -35,6 +35,10 @@ class User
     self.password_hash = @password
   end
 
+  def following
+    User.where(follower_ids: id)
+  end
+
   def public_info
     data = {
       email:         email,

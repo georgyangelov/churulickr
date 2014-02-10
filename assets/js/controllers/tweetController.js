@@ -1,38 +1,29 @@
 angular.module('churulickr').controller('tweetController',
-['$scope', '$http', function($scope, $http) {
+['$scope', '$http', 'tweet', '$rootScope', function($scope, $http, tweet, $rootScope) {
 
-	function genTweet(next) {
-		$http.get('http://www.randomtext.me/api/giberrish/p-1/10-30?' + ~~(Math.random() * 10000))
-		.success(function(data) {
-			next({
-				src: 'http://lorempixel.com/70/70/?' + ~~(Math.random() * 10000),
-				text: data.text_out.replace(/<\/?p>/g, ''),
-				from: '@stormbreakerbg'
-			});
+	$scope.loadAllTweets = function() {
+		tweet.getAllTweets().then(function(p) {
+			$scope.tweets = p.data;
 		});
 	};
-
-	$scope.tweets = [];
-
-	$scope.add = function add() {
-		genTweet(function(tweet) {
-			$scope.tweets.unshift(tweet);
-		});
+	$scope.loadTweets = function() {
+		tweet.getTweets().then(function(p) {
+			$scope.tweets = p.data;
+		})
 	};
 
-	for (var i = 0; i < 20; i++) {
-		$scope.add();
+	if($rootScope.logged_in) {
+		$scope.loadTweets();
+	} else {
+		$scope.loadAllTweets();
 	}
 
-	setInterval(function() {
-		$scope.add();
-	}, 5000);
+	$scope.$on('login', function() {
+		$scope.loadTweets();
+	});
 
-	// $scope.remove = function remove() {
-	// 	$scope.tweets.splice(
-	// 		~~(Math.random() * $scope.tweets.length),
-	// 		1
-	// 	)
-	// };
+	$scope.$on('logout', function() {
+		$scope.loadAllTweets();
+	});
 
 }])

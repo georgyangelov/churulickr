@@ -8,3 +8,12 @@ post '/tweet' do
 
   message.save!
 end
+
+get '/tweet/all' do
+  Message.all.map(&:public_info).to_json
+end
+
+get '/tweet' do
+  user = User.find(session[:user_id])
+  Message.any_in(author_id: user.following.map(&:id)).map(&:public_info).to_json
+end

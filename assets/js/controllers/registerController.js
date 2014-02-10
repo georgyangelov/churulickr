@@ -1,5 +1,5 @@
 angular.module('churulickr').controller('registerController',
-	['$scope', '$http', 'user', function($scope, $http, user) {
+	['$scope', '$http', 'user', '$rootScope', function($scope, $http, user, $rootScope) {
 	$scope.submit = function() {
 		if (!$('#registerDialog form').valid()) {
 			return;
@@ -10,7 +10,7 @@ angular.module('churulickr').controller('registerController',
 		}).then(function(response) {
 			$scope.username = $scope.password = $scope.email = '';
 			$scope.has_error = false;
-			$scope.$emit('login', response.data);
+			$rootScope.$broadcast('login', response.data);
 
 			$('#registerDialog').modal('hide');
 		}, function(err) {
