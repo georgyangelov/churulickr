@@ -1,9 +1,8 @@
 angular.module('churulickr').controller('profileController',
-['$scope', '$rootScope', '$routeParams', 'user', '$location', function($scope, $rootScope, $routeParams, user, $location) {
+['$scope', '$rootScope', '$routeParams', 'user', '$location', 'tweet', function($scope, $rootScope, $routeParams, user, $location, tweet) {
 
 	/* Properties */
 	$scope.info = {};
-
 	$scope.first_name = function() {
 		if (!$scope.info.fullname) {
 			return '';
@@ -80,4 +79,6 @@ angular.module('churulickr').controller('profileController',
 		$rootScope.$broadcast('alert', 'danger', "We don't know anything about this user, sorry...");
 		$location.path('/');
 	});
+
+
 }]);
