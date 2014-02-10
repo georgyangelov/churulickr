@@ -34,6 +34,18 @@ angular.module('churulickr').service('user', ['$q', '$http', function($q, $http)
 
 		unfollow: function(username) {
 			return $http.post('/user/unfollow/' + username);
+		},
+
+		verify: function(username) {
+			return $http.post('/user/verify/' + username);
+		},
+
+		unverify: function(username) {
+			return $http.post('/user/unverify/' + username);
+		},
+
+		remove: function(username) {
+			return $http.post('/user/remove/' + username);
 		}
 	};
 }]);

@@ -10,6 +10,7 @@ class User
   field :email,         type: String
   field :register_date, type: DateTime
   field :verified,      type: Boolean, default: false
+  field :admin,         type: Boolean, default: false
 
   validates :username,      presence: true, uniqueness: true
   validates :email,         presence: true, uniqueness: true
@@ -22,6 +23,8 @@ class User
 
   has_and_belongs_to_many :followers,
                           class_name: 'User'
+
+  alias_method :admin?, :admin
 
   def password
     @password ||= Password.new(password_hash)
@@ -39,12 +42,12 @@ class User
       username:      username,
       verified:      verified,
       register_date: register_date,
+      admin:         admin,
     }
 
-    data[:followers] = followers.map(&:username)
-    data[:following] = User.where(follower_ids: id).map(&:username)
-
-    data[:tweets_count]    = messages.count
+    data[:followers]    = followers.map(&:username)
+    data[:following]    = User.where(follower_ids: id).map(&:username)
+    data[:tweets_count] = messages.count
 
     data
   end

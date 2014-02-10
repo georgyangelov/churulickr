@@ -50,3 +50,29 @@ end
 post '/user/unfollow/:username' do |username|
   User.where(username: username).first.followers.delete User.find(session[:user_id])
 end
+
+post '/user/verify/:username' do |username|
+  halt 403 unless User.find(session[:user_id]).admin?
+
+  user = User.where(username: username).first
+  user.verified = true
+
+  user.save!
+end
+
+post '/user/unverify/:username' do |username|
+  halt 403 unless User.find(session[:user_id]).admin?
+
+  user = User.where(username: username).first
+  user.verified = false
+
+  user.save!
+end
+
+post '/user/remove/:username' do |username|
+  halt 403 unless User.find(session[:user_id]).admin?
+
+  User.where(username: username).destroy
+
+  200
+end
