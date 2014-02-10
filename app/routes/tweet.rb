@@ -1,6 +1,9 @@
 post '/tweet' do
-  message = Message.new text: params[:message],
-                        date: DateTime.now
+  user    = User.find(session[:user_id])
+  message = Message.new text:   params[:message],
+                        date:   DateTime.now,
+                        author: user
+
   message.location = params[:location] if params[:location]
 
   message.save!
