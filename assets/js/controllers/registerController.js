@@ -17,4 +17,4 @@ angular.module('churulickr').controller('registerController',
 			$scope.has_error = true;
 		});
 	}
-}])
+}]);

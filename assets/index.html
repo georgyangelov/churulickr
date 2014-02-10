@@ -28,9 +28,11 @@
   <script src="js/directives/validation.js"></script>
 
   <script src="js/services/user.js"></script>
+  <script src="js/services/tweet.js"></script>
 
   <script src="js/controllers/applicationController.js"></script>
   <script src="js/controllers/alertController.js"></script>
+  <script src="js/controllers/newTweetController.js"></script>
   <script src="js/controllers/tweetController.js"></script>
   <script src="js/controllers/loginController.js"></script>
   <script src="js/controllers/registerController.js"></script>
@@ -56,7 +58,7 @@
 	    <div class="navbar-collapse collapse">
 	      <ul class="nav navbar-nav">
 	        <li><a href="#">Home</a></li>
-	        <li><a href="#">Churulick!</a></li>
+	        <li><a data-toggle="modal" data-target="#newTweetDialog">Churulick!</a></li>
 	      </ul>
 
         <ul class="nav navbar-nav navbar-right" ng-hide="logged_in">
@@ -161,6 +163,29 @@
 
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-primary">Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div ng-controller="newTweetController" class="modal fade" id="newTweetDialog" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form class="form-horizontal" role="form" validate="login" ng-submit="submit()">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Churulick to the world</h4>
+          </div>
+          <div class="modal-body">
+              <textarea name="message" type="text" class="form-control" id="tweetText" placeholder="Churulick here..." required ng-model="message" ng-change="change()" rows="5"></textarea>
+              <p>{{symbols_left}} symbols left</p>
+          </div>
+          <div class="modal-footer">
+            <p class="error" ng-show="has_error">You failed to churulick! You are a failure!</p>
+
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" ng-disabled="symbols_left < 0 || message_empty">Churulick!</button>
           </div>
         </form>
       </div>
