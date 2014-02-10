@@ -5,6 +5,7 @@ class User
   include BCrypt
 
   field :username,      type: String
+  field :fullname,      type: String
   field :password_hash, type: String
   field :email,         type: String
   field :register_date, type: DateTime
@@ -13,6 +14,7 @@ class User
   validates :username,      presence: true, uniqueness: true
   validates :email,         presence: true, uniqueness: true
   validates :password_hash, presence: true
+  validates :fullname,      presence: true
 
   has_many :messages,
            dependent:  :delete,
@@ -33,6 +35,7 @@ class User
   def public_info(with_followers=false)
     data = {
       email:         email,
+      fullname:      fullname,
       username:      username,
       verified:      verified,
       register_date: register_date,

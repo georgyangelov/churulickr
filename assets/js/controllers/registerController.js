@@ -5,7 +5,7 @@ angular.module('churulickr').controller('registerController',
 			return;
 		}
 
-		user.register($scope.email, $scope.username, $scope.password).then(function() {
+		user.register($scope.email, $scope.fullname, $scope.username, $scope.password).then(function() {
 			return user.login($scope.username, $scope.password);
 		}).then(function(response) {
 			$scope.username = $scope.password = $scope.email = '';
