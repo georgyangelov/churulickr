@@ -43,6 +43,12 @@ class User
 
     data[:followers] = followers if with_followers
 
+    data[:followers_count] = followers.size
+
+    # TODO: Check if this works
+    data[:following_count] = User.where(followers: id).count
+    data[:tweets_count]    = messages.count
+
     data
   end
 

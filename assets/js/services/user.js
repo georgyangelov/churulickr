@@ -20,8 +20,12 @@ angular.module('churulickr').service('user', ['$q', '$http', function($q, $http)
 			return $http.post('/user/logout');
 		},
 
-		info: function() {
-			return $http.get('/user/info');
+		info: function(username) {
+			return $http.get('/user/info/' + username);
+		},
+
+		logged_user_info: function() {
+			return $http.get('/user/logged_user_info');
 		}
 	};
 }]);

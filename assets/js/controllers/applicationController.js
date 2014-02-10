@@ -26,6 +26,6 @@ angular.module('churulickr').controller('applicationController',
 	};
 
 	// Check if we are logged in
-	user.info().success(set_user_data);
+	user.logged_user_info().success(set_user_data);
 
 }]);

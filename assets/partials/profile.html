@@ -3,17 +3,17 @@
 
 	<div class="profile">
 		<img class="avatar" ng-src="http://placekitten.com/100/100">
-		<h3>Georgy Angelov <span class="glyphicon glyphicon-ok" title="This is a verified account"></span></h3>
-		<h4>@stormbreakerbg</h4>
+		<h3>{{info.fullname}} <span ng-show="info.verified" class="glyphicon glyphicon-ok" title="This is a verified account"></span></h3>
+		<h4>@{{info.username}}</h4>
 	</div>
 
 	<div class="info">
-		<h4>2800 tweets &nbsp; 108 followers &nbsp; 86 following</h4>
+		<h4>{{info.tweets_count}} tweets &nbsp; {{info.followers_count}} followers &nbsp; {{info.following_count}} following</h4>
 	</div>
 
 	<div class="buttons">
 		<button class="btn btn-on-color"><span class="glyphicon glyphicon-plus"></span> Follow</button>
-		<button class="btn btn-on-color"><span class="glyphicon glyphicon-share-alt"></span> Churulick to Georgy</button>
+		<button class="btn btn-on-color"><span class="glyphicon glyphicon-share-alt"></span> Churulick to {{first_name()}}</button>
 		&nbsp;
 		<button class="btn btn-on-color"><span class="glyphicon glyphicon-ok"></span> Verify</button>
 		<button class="btn btn-on-color btn-red-text"><span class="glyphicon glyphicon-remove"></span> Remove</button>

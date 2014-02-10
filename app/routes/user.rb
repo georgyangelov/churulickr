@@ -6,10 +6,14 @@ get '/user/username_taken' do
   User.where(username: params[:username]).exists? ? 'false' : 'true'
 end
 
-get '/user/info' do
+get '/user/logged_user_info' do
   return 400 unless session[:logged_in]
 
   User.find(session[:user_id]).public_info(true).to_json
+end
+
+get '/user/info/:username' do |username|
+  User.where(username: username).first.public_info(true).to_json
 end
 
 post '/user/register' do
