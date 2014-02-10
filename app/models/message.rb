@@ -6,6 +6,7 @@ class Message
   field :date,     type: DateTime
 
   validates :text, presence: true, length: { minimum: 1, maximum: 140 }
+  validates :date, presence: true
 
   belongs_to :author,
              class_name: 'User',
