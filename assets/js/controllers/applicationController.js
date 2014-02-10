@@ -10,6 +10,7 @@ angular.module('churulickr').controller('applicationController',
 	}
 
 	$scope.$on('login', function(event, user_data) {
+		console.log(event, user_data);
 		set_user_data(user_data);
 	});
 

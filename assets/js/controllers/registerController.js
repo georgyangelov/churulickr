@@ -7,10 +7,10 @@ angular.module('churulickr').controller('registerController',
 
 		user.register($scope.email, $scope.username, $scope.password).then(function() {
 			return user.login($scope.username, $scope.password);
-		}).then(function(user_data) {
+		}).then(function(response) {
 			$scope.username = $scope.password = $scope.email = '';
 			$scope.has_error = false;
-			$scope.$emit('login', user_data);
+			$scope.$emit('login', response.data);
 
 			$('#registerDialog').modal('hide');
 		}, function(err) {
