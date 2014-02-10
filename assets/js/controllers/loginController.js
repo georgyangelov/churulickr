@@ -14,5 +14,9 @@ angular.module('churulickr').controller('loginController', ['$scope', 'user', fu
 		.error(function(err) {
 			$scope.has_error = true;
 		});
-	}
+	};
+
+	$('#loginDialog').on('shown.bs.modal', function() {
+		$('#loginUsername').focus();
+	});
 }])

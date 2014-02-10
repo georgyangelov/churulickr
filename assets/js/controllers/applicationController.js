@@ -24,6 +24,10 @@ angular.module('churulickr').controller('applicationController',
 		});
 	};
 
+	$scope.reply = function(username) {
+		$scope.$broadcast('reply', username);
+	};
+
 	// Check if we are logged in
 	user.logged_user_info().success(set_user_data);
 
