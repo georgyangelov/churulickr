@@ -30,6 +30,10 @@ angular.module('churulickr').service('user', ['$q', '$http', function($q, $http)
 
 		follow: function(username) {
 			return $http.post('/user/follow/' + username);
+		},
+
+		unfollow: function(username) {
+			return $http.post('/user/unfollow/' + username);
 		}
 	};
 }]);

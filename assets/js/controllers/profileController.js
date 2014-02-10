@@ -13,16 +13,25 @@ angular.module('churulickr').controller('profileController',
 			return false;
 		}
 
-		return $scope.info.following.indexOf($rootScope.user.username) >= 0;
+		return $scope.info.followers.indexOf($rootScope.user.username) >= 0;
 	};
 
 	/* Methods */
 	$scope.follow = function() {
 		user.follow($scope.info.username).then(function() {
-			console.log('success');
-			$scope.info.following.push($rootScope.user.username);
+			$scope.info.followers.push($rootScope.user.username);
 		}, function() {
 			$rootScope.$broadcast('alert', 'danger', "Couldn't follow user. You don't like him/her anyway...");
+		});
+	};
+
+	$scope.unfollow = function() {
+		user.unfollow($scope.info.username).then(function() {
+			$scope.info.followers.splice(
+				$scope.info.followers.indexOf($rootScope.user.username)
+			, 1);
+		}, function() {
+			$rootScope.$broadcast('alert', 'danger', "Couldn't unfollow user. Don't unfollow your friends like that!");
 		});
 	};
 

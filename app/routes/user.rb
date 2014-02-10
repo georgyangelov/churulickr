@@ -46,3 +46,7 @@ end
 post '/user/follow/:username' do |username|
   User.where(username: username).first.followers << User.find(session[:user_id])
 end
+
+post '/user/unfollow/:username' do |username|
+  User.where(username: username).first.followers.delete User.find(session[:user_id])
+end

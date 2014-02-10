@@ -44,10 +44,6 @@ class User
     data[:followers] = followers.map(&:username)
     data[:following] = User.where(follower_ids: id).map(&:username)
 
-    data[:followers_count] = followers.size
-
-    # TODO: Check if this works
-    data[:following_count] = data[:following].size
     data[:tweets_count]    = messages.count
 
     data
