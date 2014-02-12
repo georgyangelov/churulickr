@@ -187,10 +187,10 @@
           <div class="modal-body">
               <textarea name="message" type="text" class="form-control" id="tweetText" placeholder="Churulick here..." required ng-model="message" ng-change="change()" rows="5"></textarea>
               <p>{{symbols_left}} symbols left</p>
+            <input type="text" placeholder="Where you at?" id="TweetLocation" ng-model="location" class="form-control"/>
           </div>
           <div class="modal-footer">
             <p class="error" ng-show="has_error">You failed to churulick! You are a failure!</p>
-
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-primary" ng-disabled="symbols_left < 0 || message_empty">Churulick!</button>
           </div>
