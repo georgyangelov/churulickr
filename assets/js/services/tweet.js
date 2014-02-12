@@ -1,4 +1,4 @@
-angular.module('churulickr').service('tweet', ['$q', '$http', '$routeParams', function($q, $http, $routeParams) {
+angular.module('churulickr').service('tweet', ['$q', '$http', function($q, $http) {
 	return {
 		new: function(message, location) {
 			return $http.post('/tweet', {
@@ -15,8 +15,8 @@ angular.module('churulickr').service('tweet', ['$q', '$http', '$routeParams', fu
 			return $http.get('/tweet');
 		},
 
-		getUserTweets: function(user_id) {
-			return $http.get('/tweet/' + $routeParams.username)
+		getUserTweets: function(username) {
+			return $http.get('/tweet/' + username);
 		}
 	};
 }]);

@@ -3,6 +3,8 @@ var MESSAGE_MAX_LENGTH = 140;
 angular.module('churulickr').controller('newTweetController',
 	['$scope', 'tweet', function($scope, tweet) {
 
+	$scope.message = "";
+
 	$scope.has_error = false;
 	$scope.symbols_left = MESSAGE_MAX_LENGTH;
 	$scope.message_empty = true;

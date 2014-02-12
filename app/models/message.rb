@@ -16,8 +16,7 @@ class Message
     data = {
       text:      text,
       location:  location,
-      date:      date,
-      author:    author
+      date:      date
     }
 
     data[:from] = author.username

@@ -1,23 +1,51 @@
 angular.module('churulickr').controller('tweetController',
-['$scope', '$http', 'tweet', '$rootScope', '$routeParams', function($scope, $http, tweet, $rootScope, $routeParams) {
+['$scope', '$http', 'tweet', 'socket', '$rootScope', '$routeParams', function($scope, $http, tweet, socket, $rootScope, $routeParams) {
+
+	$scope.tweets = [];
+
+	var socket_connection = null;
 
 	$scope.loadAllTweets = function() {
 		tweet.getAllTweets().then(function(p) {
 			$scope.tweets = p.data;
+			subscribe('/socket/tweet/all');
 		});
 	};
 
 	$scope.loadTweets = function() {
 		tweet.getTweets().then(function(p) {
 			$scope.tweets = p.data;
-		})
+			subscribe('/socket/tweet');
+		});
 	};
 
 	$scope.loadUserTweets = function(username) {
 		tweet.getUserTweets(username).then(function(p) {
 			$scope.tweets = p.data;
+			subscribe('/socket/tweet/' + username);
 		});
 	};
+
+	function subscribe(url) {
+		socket.connect(url, function(socket) {
+			if (socket_connection) {
+				socket_connection.close();
+			}
+
+			socket_connection = socket;
+
+			$scope.$on('$destroy', function() {
+				if (socket_connection) {
+					socket_connection.close();
+					socket_connection = null;
+				}
+			});
+		}, function(socket, message) {
+			$scope.$apply(function() {
+				$scope.tweets.unshift(message);
+			});
+		});
+	}
 
 	$scope.reply = function(username) {
 		$rootScope.$broadcast('reply', username);
@@ -25,8 +53,7 @@ angular.module('churulickr').controller('tweetController',
 
 	if ($routeParams.username) {
 		$scope.loadUserTweets($routeParams.username);
-	}
-	else if ($rootScope.logged_in) {
+	} else if ($rootScope.logged_in) {
 		$scope.loadTweets();
 	} else {
 		$scope.loadAllTweets();

@@ -7,18 +7,35 @@ post '/tweet' do
   message.location = params[:location] if params[:location]
 
   message.save!
+
+  # Push a notification to all subscribers
+  socket_message = message.public_info.to_json
+
+  broadcast 'tweet/all', socket_message
+  broadcast "tweet/user/#{user.username}", socket_message
+
+  user.follower_ids.each do |follower_id|
+    broadcast "tweet/personal/#{follower_id}", socket_message
+  end
+
+  200
 end
 
 get '/tweet/all' do
-  Message.all.map(&:public_info).to_json
+  Message.all.order_by(date: :desc).map(&:public_info).to_json
 end
 
 get '/tweet' do
   user = User.find(session[:user_id])
-  Message.any_in(author_id: user.following.map(&:id)).map(&:public_info).to_json
+  Message.any_in(author_id: user.following.map(&:id)).order_by(date: :desc).map(&:public_info).to_json
 end
 
 get '/tweet/:username' do |username|
   user = User.where(username: username).first
-  user.messages.map(&:public_info).to_json
+  user.messages.order_by(date: :desc).map(&:public_info).to_json
 end
+
+
+socket '/socket/tweet/all',       proc { "tweet/all" }
+socket '/socket/tweet',           proc { "tweet/personal/#{session[:user_id]}" }
+socket '/socket/tweet/:username', proc { "tweet/user/#{params[:username]}" }

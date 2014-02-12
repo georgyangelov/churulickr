@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'sinatra-websocket'
 require 'json'
 require 'mongoid'
 require 'bcrypt'
@@ -28,4 +29,4 @@ set :public_folder, "#{APP_ROOT}/assets"
 set :views,         "#{APP_ROOT}/assets"
 set :bind,          '0.0.0.0'
 
-disable :threaded
+set :socket_channels, SocketChannels.new
