@@ -17,8 +17,8 @@ angular.module('churulickr').controller('newTweetController',
 			return;
 		}
 
-		tweet.new($scope.message, '').then(function() {
-			$scope.message = '';
+		tweet.new($scope.message, $scope.location).then(function() {
+			$scope.message = $scope.location = '';
 			$scope.has_error = false;
 			$('#newTweetDialog').modal('hide');
 		}, function() {
