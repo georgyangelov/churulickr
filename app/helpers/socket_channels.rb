@@ -44,9 +44,13 @@ module Sinatra
 
     def socket(path, channel=path)
       get path do
-        channel = instance_eval(&channel) if channel.respond_to? :call
+        if channel.respond_to? :call
+          channel_name = instance_eval(&channel)
+        else
+          channel_name = channel
+        end
 
-        @@socket_channels.new_connection(request, channel) do |socket|
+        @@socket_channels.new_connection(request, channel_name) do |socket|
           yield socket if block_given?
         end
       end

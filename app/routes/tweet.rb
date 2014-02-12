@@ -13,6 +13,7 @@ post '/tweet' do
 
   broadcast 'tweet/all', socket_message
   broadcast "tweet/user/#{user.username}", socket_message
+  broadcast "tweet/personal/#{user.id}", socket_message
 
   user.follower_ids.each do |follower_id|
     broadcast "tweet/personal/#{follower_id}", socket_message
@@ -27,7 +28,7 @@ end
 
 get '/tweet' do
   user = User.find(session[:user_id])
-  Message.any_in(author_id: user.following.map(&:id)).order_by(date: :desc).map(&:public_info).to_json
+  Message.any_in(author_id: user.following.map(&:id) + [session[:user_id]]).order_by(date: :desc).map(&:public_info).to_json
 end
 
 get '/tweet/:username' do |username|
@@ -38,4 +39,4 @@ end
 
 socket '/socket/tweet/all',       proc { "tweet/all" }
 socket '/socket/tweet',           proc { "tweet/personal/#{session[:user_id]}" }
-socket '/socket/tweet/:username', proc { "tweet/user/#{params[:username]}" }
+socket '/socket/tweet/:username', proc { p params[:username]; "tweet/user/#{params[:username]}" }
