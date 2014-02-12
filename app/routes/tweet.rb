@@ -39,4 +39,4 @@ end
 
 socket '/socket/tweet/all',       proc { "tweet/all" }
 socket '/socket/tweet',           proc { "tweet/personal/#{session[:user_id]}" }
-socket '/socket/tweet/:username', proc { p params[:username]; "tweet/user/#{params[:username]}" }
+socket '/socket/tweet/:username', proc { "tweet/user/#{params[:username]}" }
