@@ -20,7 +20,8 @@ post '/user/register' do
   user = User.new username:      params[:username],
                   fullname:      params[:fullname],
                   email:         params[:email],
-                  register_date: DateTime.now
+                  register_date: DateTime.now,
+                  avatar:        params[:avatar]
 
   user.password = params[:password]
   user.save!

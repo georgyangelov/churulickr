@@ -3,6 +3,7 @@ require 'sinatra-websocket'
 require 'json'
 require 'mongoid'
 require 'bcrypt'
+require 'carrierwave/mongoid'
 
 require_relative 'middleware/json_parser'
 
