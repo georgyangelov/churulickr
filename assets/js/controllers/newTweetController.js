@@ -1,9 +1,10 @@
 var MESSAGE_MAX_LENGTH = 140;
 
 angular.module('churulickr').controller('newTweetController',
-	['$scope', 'tweet', function($scope, tweet) {
+	['$scope', 'tweet', 'location', function($scope, tweet, location) {
 
-	$scope.message = "";
+	$scope.message = '';
+	$scope.location = '';
 
 	$scope.has_error = false;
 	$scope.symbols_left = MESSAGE_MAX_LENGTH;
@@ -43,5 +44,12 @@ angular.module('churulickr').controller('newTweetController',
 
 		$textarea.focus();
 		$textarea[0].setSelectionRange($scope.message.length, $scope.message.length);
+	});
+
+	// Try to get user's location from the browser
+	location.locate().then(function(address) {
+		$scope.location = address;
+	}, function() {
+		// Nothing more we can do...
 	});
 }]);
