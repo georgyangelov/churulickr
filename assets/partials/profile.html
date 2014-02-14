@@ -28,7 +28,7 @@
 		<h2 ng-hide="tweets.length > 0">There are no churulicks here! Why is this user not churulicking?</h2>
 
 	    <div class="masonry-brick tweet col-sm-12 col-md-6 col-lg-4" ng-repeat="tweet in tweets" style="display: none;">
-	        <img class="avatar" ng-src="{{tweet.src}}" alt="A masonry brick">
+	        <img class="avatar" ng-src="/avatar/{{tweet.from}}">
 
 	        <div class="box">
 	        	<p>{{tweet.text}}</p>
