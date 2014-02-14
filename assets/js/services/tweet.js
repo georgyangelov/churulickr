@@ -20,8 +20,8 @@ angular.module('churulickr').service('tweet', ['$q', '$http', function($q, $http
 			return $http.get('/tweet/' + username);
 		},
 
-		searchTweets: function(tag) {
-			return $http.get('/tweet/search/' + tag);
+		searchTweets: function(query) {
+			return $http.get('/tweet/search/' + query);
 		}
 	};
 }]);

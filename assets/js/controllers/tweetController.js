@@ -26,10 +26,15 @@ angular.module('churulickr').controller('tweetController',
 		});
 	};
 
-	$scope.loadSearchTweets = function(tag) {
-		tweet.searchTweets(tag).then(function(p) {
+	$scope.loadSearchTweets = function(query) {
+		tags = query.split(' ');
+		tweet.searchTweets(query).then(function(p) {
 			$scope.tweets = p.data;
-			subscribe('/socket/tweet/tags/' + tag);
+			for(var i = 0; i < tags.length; ++i) {
+				if(tags[i] != '') {
+					subscribe('/socket/tweet/tags/' + tags[i]);
+				}
+			}
 		});
 	}
 
@@ -53,7 +58,9 @@ angular.module('churulickr').controller('tweetController',
 			});
 		}, function(socket, message) {
 			$scope.$apply(function() {
-				$scope.tweets.unshift(message);
+				if($scope.tweets.indexOf(message) == -1) {
+					$scope.tweets.unshift(message);
+				}
 			});
 		});
 	}

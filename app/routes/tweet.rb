@@ -31,7 +31,8 @@ get '/tweet/all' do
 end
 
 get '/tweet/search/:search_for' do |search_for|
-  Message.where(hashtags: search_for).order_by(date: :desc).map(&:public_info).to_json
+  tags = search_for.split(' ')
+  Message.all_in(hashtags: tags).order_by(date: :desc).map(&:public_info).to_json
 end
 
 get '/tweet' do
