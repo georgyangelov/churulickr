@@ -11,3 +11,6 @@ gem "therubyracer" # Required by less
 gem "less"
 
 gem "sinatra-websocket" # Yummy!
+
+gem "carrierwave-mongoid"
+gem "mini_magick"

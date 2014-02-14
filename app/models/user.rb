@@ -8,6 +8,7 @@ class User
   field :fullname,      type: String
   field :password_hash, type: String
   field :email,         type: String
+  field :avatar,        type: String
   field :register_date, type: DateTime
   field :verified,      type: Boolean, default: false
   field :admin,         type: Boolean, default: false
@@ -23,6 +24,8 @@ class User
 
   has_and_belongs_to_many :followers,
                           class_name: 'User'
+
+  mount_uploader :avatar, ImageUploader
 
   alias_method :admin?, :admin
 
@@ -46,7 +49,7 @@ class User
       username:      username,
       verified:      verified,
       register_date: register_date,
-      admin:         admin,
+      admin:         admin
     }
 
     data[:followers]    = followers.map(&:username)

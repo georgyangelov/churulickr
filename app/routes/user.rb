@@ -16,11 +16,21 @@ get '/user/info/:username' do |username|
   User.where(username: username).first.public_info.to_json
 end
 
+# Serve avatars from GridFS
+get '/avatar/:username' do |username|
+  avatar = User.where(username: username).first.avatar
+
+  response.headers['content_type'] = avatar.file.content_type
+
+  avatar.read
+end
+
 post '/user/register' do
   user = User.new username:      params[:username],
                   fullname:      params[:fullname],
                   email:         params[:email],
-                  register_date: DateTime.now
+                  register_date: DateTime.now,
+                  avatar:        params[:avatar]
 
   user.password = params[:password]
   user.save!
