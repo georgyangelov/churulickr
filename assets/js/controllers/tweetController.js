@@ -58,10 +58,6 @@ angular.module('churulickr').controller('tweetController',
 		});
 	}
 
-	$scope.initTooltip = function() {
-		$('.timeTooltip').tooltip();
-	}
-
 
 	if ($routeParams.username) {
 		$scope.loadUserTweets($routeParams.username);
@@ -82,7 +78,4 @@ angular.module('churulickr').controller('tweetController',
 	$scope.$on('search', function(event, tag) {
 			$scope.loadSearchTweets(tag);
 	});
-
-
-
 }]);
