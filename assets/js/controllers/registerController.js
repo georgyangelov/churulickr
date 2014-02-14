@@ -1,12 +1,33 @@
 angular.module('churulickr').controller('registerController',
-	['$scope', '$http', 'user', '$rootScope', function($scope, $http, user, $rootScope) {
+	['$q', '$scope', '$http', 'user', '$rootScope', function($q, $scope, $http, user, $rootScope) {
+
+	$scope.has_error = false;
+
+	$('#registerDialog form').fileupload({
+		dataType: 'json',
+		acceptFileTypes: /(\.|\/)(jpe?g|png)$/i,
+		maxFileSize: 1024 * 1024, // 1MB
+
+		autoUpload: false,
+		replaceFileInput: false,
+
+		url: '/user/register',
+
+		add: function(e, data) {
+			$scope.fileDataHandle = data;
+		}
+	});
+
 	$scope.submit = function() {
 		if (!$('#registerDialog form').valid()) {
 			return;
 		}
 
-		alert($scope.avatar);
-		user.register($scope.email, $scope.fullname, $scope.username, $scope.password, $scope.avatar).then(function() {
+		if (!$scope.fileDataHandle) {
+			return;
+		}
+
+		$q.when($scope.fileDataHandle.submit()).then(function() {
 			return user.login($scope.username, $scope.password);
 		}).then(function(response) {
 			$scope.username = $scope.password = $scope.email = '';
@@ -14,7 +35,7 @@ angular.module('churulickr').controller('registerController',
 			$rootScope.$broadcast('login', response.data);
 
 			$('#registerDialog').modal('hide');
-		}, function(err) {
+		}, function() {
 			$scope.has_error = true;
 		});
 	};

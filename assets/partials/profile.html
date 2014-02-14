@@ -2,7 +2,7 @@
 	<div class="background"></div>
 
 	<div class="profile">
-		<img class="avatar" ng-src="{{info.avatar.url_avatar}}">
+		<img class="avatar" ng-src="{{info.username ? '/avatar/' + info.username : ''}}">
 		<h3>{{info.fullname}} <span ng-show="info.verified" class="glyphicon glyphicon-ok" title="This is a verified account"></span></h3>
 		<h4>@{{info.username}}</h4>
 	</div>

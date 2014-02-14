@@ -1,5 +1,4 @@
 require 'bcrypt'
-require_relative '../uploader/image_uploader'
 
 class User
   include Mongoid::Document
@@ -50,7 +49,7 @@ class User
       username:      username,
       verified:      verified,
       register_date: register_date,
-      admin:         admin,
+      admin:         admin
     }
 
     data[:followers]    = followers.map(&:username)

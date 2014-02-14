@@ -1,15 +1,5 @@
 angular.module('churulickr').service('user', ['$q', '$http', function($q, $http) {
 	return {
-		register: function(email, fullname, username, password, avatar) {
-			return $http.post('/user/register', {
-				email: email,
-				fullname: fullname,
-				username: username,
-				password: password,
-				avatar: avatar
-			});
-		},
-
 		login: function(username, password) {
 			return $http.post('/user/login', {
 				username: username,
