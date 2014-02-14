@@ -27,7 +27,7 @@ post '/tweet' do
 end
 
 get '/tweet/all' do
-  Message.all.order_by(date: :desc).map(&:public_info).to_json
+  Message.order_by(date: :desc).map(&:public_info).to_json
 end
 
 get '/tweet/search/:search_for' do |search_for|

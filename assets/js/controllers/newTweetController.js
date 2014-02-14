@@ -24,7 +24,7 @@ angular.module('churulickr').controller('newTweetController',
 		}
 		$scope.hashtags = ($scope.message.match(/#(\w+)/g) || []).map($scope.removeHash);
 		tweet.new($scope.message, $scope.location, $scope.hashtags).then(function() {
-			$scope.message = $scope.location = '';
+			$scope.message = '';
 			$scope.has_error = false;
 			$('#newTweetDialog').modal('hide');
 		}, function() {
