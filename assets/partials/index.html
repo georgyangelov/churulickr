@@ -11,7 +11,7 @@
 	        	<div class="button-bar">
 		        	<button class="pull-left" ng-click="reply(tweet.from)"><span class="glyphicon glyphicon-share-alt"></span> Reply</button>
 		        	<button class="pull-left" ng-if="tweet.location"><span class="glyphicon glyphicon-globe"></span>{{tweet.location}}</button>
-		        	<span class="glyphicon glyphicon-time button-element" tooltip data-toggle="tooltip" data-placement="top" tooltip="{{tweet.date}}"></span>
+		        	<span class="glyphicon glyphicon-time button-element" data-placement="top" tooltip="{{tweet.date}}"></span>
 
 		        	<div class="pull-right button-element"><a ng-href="#/{{tweet.from}}" class="no-style">@{{tweet.from}}</a></div>
 	        	</div>
