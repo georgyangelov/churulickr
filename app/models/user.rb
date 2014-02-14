@@ -18,12 +18,16 @@ class User
   validates :password_hash, presence: true
   validates :fullname,      presence: true
 
+  index({username: 1},    {unique: true})
+  index({message_ids: 1}, {})
+
   has_many :messages,
            dependent:  :delete,
            inverse_of: :author
 
   has_and_belongs_to_many :followers,
-                          class_name: 'User'
+                          class_name: 'User',
+                          index:      true
 
   mount_uploader :avatar, ImageUploader
 

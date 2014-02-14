@@ -10,7 +10,8 @@ class Message
 
   belongs_to :author,
              class_name: 'User',
-             inverse_of: :messages
+             inverse_of: :messages,
+             index:      true
 
   def public_info
     data = {
