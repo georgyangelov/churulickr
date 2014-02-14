@@ -19,8 +19,11 @@ angular.module('churulickr').controller('newTweetController',
 		if ($scope.message_empty || $scope.symbols_left < 0) {
 			return;
 		}
-
-		tweet.new($scope.message, $scope.location).then(function() {
+		$scope.removeHash = function(str) {
+			return str.substring(1);
+		}
+		$scope.hashtags = $scope.message.match(/#(\w+)/g).map($scope.removeHash);
+		tweet.new($scope.message, $scope.location, $scope.hashtags).then(function() {
 			$scope.message = $scope.location = '';
 			$scope.has_error = false;
 			$('#newTweetDialog').modal('hide');

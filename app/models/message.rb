@@ -4,6 +4,7 @@ class Message
   field :text,     type: String
   field :location, type: String
   field :date,     type: DateTime
+  field :hashtags, type: Array
 
   validates :text, presence: true, length: { minimum: 1, maximum: 140 }
   validates :date, presence: true
@@ -17,7 +18,7 @@ class Message
     data = {
       text:      text,
       location:  location,
-      date:      date
+      date:      date.strftime("%e-%m-%y %H:%M:%S")
     }
 
     data[:from] = author.username

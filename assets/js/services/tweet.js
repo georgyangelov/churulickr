@@ -1,9 +1,10 @@
 angular.module('churulickr').service('tweet', ['$q', '$http', function($q, $http) {
 	return {
-		new: function(message, location) {
+		new: function(message, location, hashtags) {
 			return $http.post('/tweet', {
 				message: message,
-				location: location
+				location: location,
+				hashtags: hashtags
 			});
 		},
 
@@ -17,6 +18,10 @@ angular.module('churulickr').service('tweet', ['$q', '$http', function($q, $http
 
 		getUserTweets: function(username) {
 			return $http.get('/tweet/' + username);
+		},
+
+		searchTweets: function(tag) {
+			return $http.get('/tweet/search/' + tag);
 		}
 	};
 }]);

@@ -26,6 +26,17 @@ angular.module('churulickr').controller('tweetController',
 		});
 	};
 
+	$scope.loadSearchTweets = function(tag) {
+		tweet.searchTweets(tag).then(function(p) {
+			$scope.tweets = p.data;
+			subscribe('/socket/tweet/tags/' + tag);
+		});
+	}
+
+	$scope.reply = function(username) {
+		$rootScope.$broadcast('reply', username);
+	};
+
 	function subscribe(url) {
 		socket.connect(url, function(socket) {
 			if (socket_connection) {
@@ -47,9 +58,10 @@ angular.module('churulickr').controller('tweetController',
 		});
 	}
 
-	$scope.reply = function(username) {
-		$rootScope.$broadcast('reply', username);
-	};
+	$scope.initTooltip = function() {
+		$('.timeTooltip').tooltip();
+	}
+
 
 	if ($routeParams.username) {
 		$scope.loadUserTweets($routeParams.username);
@@ -66,5 +78,11 @@ angular.module('churulickr').controller('tweetController',
 	$scope.$on('logout', function() {
 		$scope.loadAllTweets();
 	});
+
+	$scope.$on('search', function(event, tag) {
+			$scope.loadSearchTweets(tag);
+	});
+
+
 
 }]);

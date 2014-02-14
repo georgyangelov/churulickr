@@ -1,5 +1,5 @@
 angular.module('churulickr').controller('applicationController',
-	['$rootScope', 'user', function($scope, user) {
+	['$rootScope', '$scope', 'user', function($rootScope, $scope, user) {
 
 	$scope.logged_in = false;
 	$scope.user = {};
@@ -29,6 +29,9 @@ angular.module('churulickr').controller('applicationController',
 		$scope.$broadcast('reply', username);
 	};
 
+	$scope.search = function(tag) {
+		$rootScope.$broadcast('search', tag)
+	};
 	// Check if we are logged in
 	user.logged_user_info().success(function(user_data) {
 		$scope.$broadcast('login', user_data);
