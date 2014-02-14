@@ -36,7 +36,7 @@ angular.module('churulickr').controller('tweetController',
 				}
 			}
 		});
-	}
+	};
 
 	$scope.reply = function(username) {
 		$rootScope.$broadcast('reply', username);
@@ -83,6 +83,14 @@ angular.module('churulickr').controller('tweetController',
 	});
 
 	$scope.$on('search', function(event, tag) {
+		if (tag) {
 			$scope.loadSearchTweets(tag);
+		} else if ($routeParams.username) {
+			$scope.loadUserTweets($routeParams.username);
+		} else if ($rootScope.logged_in) {
+			$scope.loadTweets();
+		} else {
+			$scope.loadAllTweets();
+		}
 	});
 }]);
